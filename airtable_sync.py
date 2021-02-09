@@ -38,18 +38,12 @@ for person in table_data:
             path=person['fields']['Фотография'][0]['url'],
         )
 
-                    # therapist = Psychotherapist()
-                    # therapist.airtable_id = person['id']
-                    # therapist.name = person['fields']['Имя']
-                    # therapist.photo = Photo.objects.get(pk=photo.pk)
-                    # therapist.save()
         updated_values.update({'photo': Photo.objects.get(pk=photo.pk)})
 
     therapist, created = Psychotherapist.objects.update_or_create(
         airtable_id=person['id'], defaults=updated_values
     )
-                    # therapist.name = person['fields']['Имя']
-                    # therapist.photo = Photo.objects.get(pk=photo.pk)
+
     if 'Методы' in person['fields'].keys():
         updated_methods = []
         for method_name in person['fields']['Методы']:
